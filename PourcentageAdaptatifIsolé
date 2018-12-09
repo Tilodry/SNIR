@@ -1,0 +1,25 @@
+char * typeMesure[2] = {"LDR = ", "CTN = "};
+int at[2] = {A2, A3};
+int vmin[2] = {1023, 1023};
+int vmax[2] = {0, 0};
+float mesure[2] = {0, 0};
+void setup()
+    {
+    for (int i = 0; i <= 1; i++)
+    {
+    pinMode(at[i], INPUT);
+    }
+    Serial.begin(9600);
+    }
+void loop()
+    {
+    for (int i = 0; i <= 1; i++)
+        {
+        Serial.print(typeMesure[i]);
+        mesure[i] = analogRead(at[i]);
+        if (mesure[i] < vmin[i]) vmin[i] = mesure[i];
+        if (mesure[i] > vmax[i]) vmax[i] = mesure[i];
+        Serial.println((mesure[i] - vmin[i]) / (vmax[i] - vmin[i]) * 100);
+        }
+    delay(500);
+    }
