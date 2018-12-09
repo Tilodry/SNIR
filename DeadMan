@@ -1,0 +1,50 @@
+unsigned long currentMillis = 0;
+unsigned long previousMillis = 0;
+const long intervalle = 3000;
+bool etatbp = 0;
+void setup() {
+  pinMode(2, INPUT);
+  pinMode(8, OUTPUT);
+  pinMode(10, OUTPUT);
+  
+}
+
+
+void loop() {
+  
+  digitalWrite(10,1);
+  currentMillis = millis();
+
+  while (currentMillis - previousMillis >= intervalle)
+  {
+    currentMillis = millis();
+    if (currentMillis - previousMillis >= 6000)
+    {
+      
+      for (int i =0;i<50;i++)
+      {
+        digitalWrite(8,1);
+        delay(50);
+        digitalWrite(8,0);
+        delay(50);
+        
+      }
+      while(1)
+        {
+          
+        }
+    }
+    digitalWrite(10,0);
+    digitalWrite(8,1);
+    etatbp = digitalRead(2);
+    if (etatbp == 1)
+    {
+      digitalWrite(10,1);
+      digitalWrite(8,0);
+      previousMillis = currentMillis;
+      
+    }
+      
+  }
+  delay(1);
+}
