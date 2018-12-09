@@ -1,0 +1,47 @@
+/************************************************
+* Auteur : Tilodry                              *
+* Nom prog : Tristar2.c                         *
+* Role : Triangle plein                         *
+* Version : 2.0                                 *
+* Fabrication :  gcc -Wall -o                   *
+* Date :  4/11                                  *
+*************************************************/
+#include "argv.h"
+
+int main(int argc, char **argv)
+{
+	int colonne,at,space;
+	int at2 = 0;
+	int nbstar = 0;
+	int lenght = 0;
+
+
+	//Initialisation puis verification de la variable entrée	
+
+	printf("Inserez le nombre de colonnes (nombre impaire entre 3 et 15) :\n");
+	scanf("%d", &colonne);
+	if(colonne < 3 || colonne > 15 || colonne%2 != 1) return InvalidArg;
+
+	
+	//Création du triangle plein
+
+
+	space = colonne/2;
+	for (at = 1; at <= colonne; at=at+2)
+	{
+		
+		for(lenght=0;lenght < space;lenght++)
+		{
+			printf(" ");
+		}
+		for(at2=0;at2 <= nbstar;at2++)
+		{
+			printf("*");
+		}
+		nbstar=nbstar+2;
+		space--;
+		printf("\n");
+	}
+
+	return 0;
+}
