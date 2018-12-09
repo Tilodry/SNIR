@@ -1,0 +1,36 @@
+int at = A3;
+int vmin = 1023;
+int vmax = 0;
+float mesure = 0;
+float mf;
+void setup()
+    {
+    for (int i = 2; i <= 10; i++)
+        {
+        pinMode(i, OUTPUT);
+        }
+    pinMode(at, INPUT);
+    Serial.begin(9600);
+    }
+void valPourcent()
+    {
+    mesure = analogRead(at);
+    if (mesure < vmin) vmin = mesure;
+    if (mesure > vmax) vmax = mesure;
+    mf = (mesure - vmin) / (vmax - vmin) * 100;
+    Serial.println(mf);
+    for (int y = 0 ; y * 12.5 < (mf); y++)
+        {
+        digitalWrite(pLeds[y], HIGH);
+        Serial.println(pLeds[y]);
+        }
+    }
+void loop()
+    {
+    for (int i = 0; i <= 7; i++)
+        {
+        digitalWrite(pLeds[i], LOW);
+        }
+    valPourcent();
+    delay(500);
+    }
